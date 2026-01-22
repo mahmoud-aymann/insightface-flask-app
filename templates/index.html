@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Face Recognition System</h1>
+            <p class="subtitle">Upload an image to recognize faces</p>
+        </header>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <div class="upload-box" id="uploadBox">
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <div class="upload-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </div>
+                    <p class="upload-text">Click to upload or drag and drop</p>
+                    <p class="upload-hint">PNG, JPG, JPEG up to 16MB</p>
+                </div>
+                
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview">
+                    <button class="btn-remove" id="removeBtn">Remove</button>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="control-group">
+                    <label for="threshold">Recognition Threshold:</label>
+                    <div class="slider-container">
+                        <input type="range" id="threshold" min="0.3" max="0.9" step="0.05" value="0.45">
+                        <span id="thresholdValue">0.45</span>
+                    </div>
+                    <small>Lower = more permissive, Higher = more strict</small>
+                </div>
+                
+                <button class="btn-recognize" id="recognizeBtn" disabled>
+                    <span>Recognize Face</span>
+                </button>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-card" id="resultCard">
+                    <div class="result-header">
+                        <h2>Recognition Result</h2>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-item">
+                            <span class="label">Person:</span>
+                            <span class="value" id="personName">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Confidence:</span>
+                            <span class="value" id="confidence">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Status:</span>
+                            <span class="value" id="status">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stats-card">
+                    <h3>System Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Known Persons</span>
+                            <span class="stat-value" id="totalPersons">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Embeddings</span>
+                            <span class="stat-value" id="totalEmbeddings">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing image...</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
