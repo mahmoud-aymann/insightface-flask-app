@@ -13,7 +13,6 @@ This folder contains additional documentation for the Face Recognition System.
 
 - **Main README:** [../README.md](../README.md)
 - **Setup Guide:** [../SETUP.md](../SETUP.md) (if exists)
-- **Video Guide:** [../VIDEO.md](../VIDEO.md)
 - **Training Pipeline:** [../Face_Recognition_Pipeline.ipynb](../Face_Recognition_Pipeline.ipynb)
 
 ## Additional Resources
